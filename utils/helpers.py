@@ -82,3 +82,45 @@ def generar_telefono():
     for _ in range(8):
         telefono += random.choice(numeros)
     return telefono
+
+
+def agregar_archivo_tomar_foto(driver, home_page, descripcion="Agregar archivos"):
+    """
+    Función para agregar archivo tomando una foto con la cámara.
+    
+    Args:
+        driver: WebDriver de Appium
+        home_page: Page Object de HomePage
+        descripcion: Texto del botón de agregar archivos (default: "Agregar archivos")
+    
+    Returns:
+        bool: True si se tomó la foto exitosamente, False otherwise
+    """
+    from appium.webdriver.common.appiumby import AppiumBy
+    
+    print(f"[Helper] Click en '{descripcion}'")
+    boton_agregar = home_page.esperar_elemento(
+        (AppiumBy.XPATH, f"//android.view.View[@content-desc='{descripcion}']"), 
+        timeout=5
+    )
+    
+    if boton_agregar:
+        boton_agregar.click()
+        time.sleep(3)
+        
+        print("[Helper] Buscando botón para tomar foto")
+        try:
+            boton_tomar_foto = driver.find_element(
+                AppiumBy.XPATH, 
+                "//android.view.View[@bounds='[520,2520][760,2760]']"
+            )
+            boton_tomar_foto.click()
+            time.sleep(3)
+            print("[Helper] Foto tomada exitosamente")
+            return True
+        except Exception as e:
+            print(f"[Helper] Error al tomar foto: {e}")
+            return False
+    else:
+        print(f"[Helper] No se encontró botón '{descripcion}'")
+        return False

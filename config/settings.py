@@ -2,8 +2,8 @@
 import os
 
 class Settings:
-    APP_NAME = "Mediplaner"
-    APP_PACKAGE = "mx.mediplanner.app"
+    APP_NAME = "Gobierno Digital"
+    APP_PACKAGE = "com.rymsolutions.gdqro"
     APP_ACTIVITY = ".MainActivity"
     
     APPIUM_HOST = os.environ.get("APPIUM_HOST", "localhost")
@@ -22,8 +22,8 @@ class Settings:
     )
     
     CREDENTIALS = {
-        "email": os.environ.get("MEDIPLANNER_EMAIL", "paciente@rym-solutions.com"),
-        "password": os.environ.get("MEDIPLANNER_PASSWORD", "@RyM2025")
+        "email": os.environ.get("GD_EMAIL", "pedro@test.com"),
+        "password": os.environ.get("GD_PASSWORD", "password123")
     }
     
     ANDROID_DEVICE = os.environ.get("ANDROID_DEVICE", "emulator-5554")

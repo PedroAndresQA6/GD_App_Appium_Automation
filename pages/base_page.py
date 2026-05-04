@@ -69,6 +69,20 @@ class BasePage:
         fin_y = int(size['height'] * 0.8)
         self.driver.swipe(inicio_x, inicio_y, inicio_x, fin_y, duracion)
     
+    def scroll_derecha(self, duracion=300):
+        size = self.driver.get_window_size()
+        inicio_x = int(size['width'] * 0.8)
+        fin_x = int(size['width'] * 0.2)
+        inicio_y = size['height'] // 2
+        self.driver.swipe(inicio_x, inicio_y, fin_x, inicio_y, duracion)
+    
+    def scroll_izquierda(self, duracion=300):
+        size = self.driver.get_window_size()
+        inicio_x = int(size['width'] * 0.2)
+        fin_x = int(size['width'] * 0.8)
+        inicio_y = size['height'] // 2
+        self.driver.swipe(inicio_x, inicio_y, fin_x, inicio_y, duracion)
+    
     def ocultar_keyboard(self):
         try:
             self.driver.hide_keyboard()
